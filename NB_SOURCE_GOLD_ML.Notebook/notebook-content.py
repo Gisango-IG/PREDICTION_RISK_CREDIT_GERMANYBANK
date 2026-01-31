@@ -432,3 +432,399 @@ df_ml.count(), df_ml.dropDuplicates().count()
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+# 1) Récupérer le modèle de régression logistique à l'intérieur du pipeline entraîné
+lr_model = model.stages[-1]
+
+# 2) Récupérer le vecteur de coefficients et l'intercept
+coeffs = lr_model.coefficients
+intercept = lr_model.intercept
+
+print("Nombre de coefficients :", len(coeffs))
+print("Intercept :", intercept)
+print("Extrait des premiers coefficients :", coeffs[:10])
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+#récupérer les noms des features
+# Récupérer l'assembler (juste avant la régression)
+assembler = model.stages[-2]
+
+# Les noms des colonnes assemblées dans "features"
+feature_names = assembler.getInputCols()
+
+print("Nombre de features :", len(feature_names))
+feature_names[:20]  # afficher les 20 premières
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# rveconstruction des noms des colonnes OHE
+from pyspark.ml.feature import OneHotEncoderModel
+
+# Récupérer le modèle OHE dans le pipeline
+ohe_model = model.stages[-3]
+
+# Récupérer les colonnes d'entrée et de sortie du OHE
+input_cols = ohe_model.getInputCols()
+output_cols = ohe_model.getOutputCols()
+
+print("Colonnes OHE d'entrée :", input_cols)
+print("Colonnes OHE de sortie :", output_cols)
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+ohe_model = model.stages[-3]
+input_cols = ohe_model.getInputCols()
+output_cols = ohe_model.getOutputCols()
+
+print("Colonnes OHE d'entrée :", input_cols)
+print("Colonnes OHE de sortie :", output_cols)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Récupérer le modèle OHE
+ohe_model = model.stages[-3]
+
+# Récupérer le nombre de catégories pour chaque variable
+category_sizes = ohe_model.categorySizes
+
+# Afficher proprement
+for col, size in zip(ohe_model.getInputCols(), category_sizes):
+    print(f"{col} : {size} catégories → {size - 1} colonnes OHE")
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Récupérer le modèle OHE
+ohe_model = model.stages[-3]
+
+# Colonnes d'entrée et de sortie du OHE
+input_cols = ohe_model.getInputCols()
+output_cols = ohe_model.getOutputCols()
+category_sizes = ohe_model.categorySizes
+
+# Liste finale des features
+final_feature_names = []
+
+# Pour chaque variable OHE
+for out_col, size in zip(output_cols, category_sizes):
+    # Spark crée (size - 1) colonnes OHE
+    for i in range(size - 1):
+        final_feature_names.append(f"{out_col}_{i}")
+
+# Vérification
+print("Nombre total de features reconstruits :", len(final_feature_names))
+final_feature_names[:20]  # afficher les 20 premiers
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+import pandas as pd
+
+# Convertir les coefficients Spark en array numpy
+coef_values = lr_model.coefficients.toArray()
+
+# Construire un tableau propre
+df_coef = pd.DataFrame({
+    "feature": final_feature_names,
+    "coefficient": coef_values
+})
+
+# Importance = valeur absolue du coefficient
+df_coef["importance"] = df_coef["coefficient"].abs()
+
+# Trier par importance décroissante
+df_coef = df_coef.sort_values(by="importance", ascending=False)
+
+df_coef.head(20)  # afficher les 20 plus importants
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Récupérer le modèle StringIndexer (il est avant le OHE dans le pipeline)
+indexer_model = model.stages[-4]
+
+# Récupérer les labels (catégories réelles)
+indexer_labels = indexer_model.labels
+
+print("Catégories réelles pour status_idx :", indexer_labels)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+indexer_model = model.stages[-4]
+indexer_model.labels
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+for i, stage in enumerate(model.stages):
+    print(i, type(stage))
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+for i, stage in enumerate(model.stages):
+    if "StringIndexerModel" in str(type(stage)):
+        print(f"Stage {i} — inputCol = {stage.getInputCol()}, outputCol = {stage.getOutputCol()}")
+        print("  labels =", stage.labels)
+        print()
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+for i, stage in enumerate(model.stages):
+    if "StringIndexerModel" in str(type(stage)):
+        print(f"Stage {i} — inputCol = {stage.getInputCol()}, outputCol = {stage.getOutputCol()}")
+        print("  labels =", stage.labels)
+        print()
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+decoded_features = []
+
+# On parcourt tous les StringIndexerModel
+for stage in model.stages:
+    if "StringIndexerModel" in str(type(stage)):
+        input_col = stage.getInputCol()
+        output_col = stage.getOutputCol()
+        labels = stage.labels
+        
+        # Nombre de colonnes OHE = nb catégories - 1
+        for i in range(len(labels) - 1):
+            feature_name = f"{output_col.replace('_idx','_ohe')}_{i}"
+            category_label = labels[i + 1]  # labels[0] = catégorie de référence
+            decoded_features.append((feature_name, input_col, category_label))
+
+import pandas as pd
+df_decoded = pd.DataFrame(decoded_features, columns=["feature", "variable", "category"])
+df_decoded.head(20)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Convertir les coefficients en DataFrame
+df_coef = pd.DataFrame({
+    "feature": final_feature_names,
+    "coefficient": lr_model.coefficients.toArray()
+})
+
+# Fusionner avec les noms métier
+df_full = df_coef.merge(df_decoded, on="feature", how="left")
+
+# Importance = valeur absolue du coefficient
+df_full["importance"] = df_full["coefficient"].abs()
+
+# Trier par importance décroissante
+df_full = df_full.sort_values(by="importance", ascending=False)
+
+df_full.head(20)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+# Les features réels sont ceux de df_decoded
+real_feature_names = df_decoded["feature"].tolist()
+
+# Vérification : doit être égal à la longueur des coefficients
+print(len(real_feature_names), len(lr_model.coefficients))
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df_coef = pd.DataFrame({
+    "feature": real_feature_names,
+    "coefficient": lr_model.coefficients.toArray()
+})
+
+df_full = df_coef.merge(df_decoded, on="feature", how="left")
+
+df_full["importance"] = df_full["coefficient"].abs()
+
+# Réordonner les colonnes
+df_full = df_full[["variable", "category", "feature", "coefficient", "importance"]]
+
+df_full.sort_values(by="importance", ascending=False).head(20)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+print("Nombre de coefficients :", len(lr_model.coefficients))
+print("Nombre de features dans df_decoded :", len(df_decoded))
+print("Nombre de features dans final_feature_names :", len(final_feature_names))
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+assembler = model.stages[20]  # VectorAssembler
+assembler.getInputCols()
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+assembler = model.stages[20]  # VectorAssembler
+assembler.getInputCols()
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df_coef = pd.DataFrame({
+    "feature": real_feature_names,
+    "coefficient": lr_model.coefficients.toArray()
+})
+
+df_full = df_coef.merge(df_decoded, on="feature", how="left")
+
+df_full["importance"] = df_full["coefficient"].abs()
+
+df_full = df_full[["variable", "category", "feature", "coefficient", "importance"]]
+
+df_full.sort_values(by="importance", ascending=False).head(20)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
