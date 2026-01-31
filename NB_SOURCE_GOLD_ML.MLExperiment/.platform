@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "MLExperiment",
+    "displayName": "NB_SOURCE_GOLD_ML"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "0d1db8fc-f7be-9ae3-4d7d-2c535aec3740"
+  }
+}

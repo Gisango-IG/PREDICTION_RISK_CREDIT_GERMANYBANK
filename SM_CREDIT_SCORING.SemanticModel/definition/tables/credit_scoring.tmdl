@@ -1,0 +1,251 @@
+table credit_scoring
+	lineageTag: 52cdab89-32f5-47b2-a8c2-fe2e791d4e8d
+	sourceLineageTag: [dbo].[credit_scoring]
+
+	measure 'default rate' = DIVIDE( CALCULATE(COUNTROWS('credit_scoring'), 'credit_scoring'[credit_risk] = 1), COUNTROWS('credit_scoring') )
+		lineageTag: 36ea0c5d-b143-44d5-8eff-f165e124442b
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total number of credit' = COUNTROWS('credit_scoring')
+		formatString: 0
+		lineageTag: 7edb2547-b994-4b2d-856c-efdbdec71da5
+
+		changedProperty = Name
+
+	measure 'Total amount credit' = SUM('credit_scoring'[amount])
+		formatString: 0
+		lineageTag: 96bbcce8-98ad-47aa-a07d-23ab0fdc0414
+
+		changedProperty = Name
+
+	measure 'Avarage of amount credit' = AVERAGE('credit_scoring'[amount])
+		lineageTag: 6e5c8bc9-70ca-4575-8211-b0685cc813c3
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column duration_cat
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ab7e462d-4576-4b56-8947-e32f31e24b8b
+		sourceLineageTag: duration_cat
+		summarizeBy: none
+		sourceColumn: duration_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_cat
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: ecf84765-6877-4d60-b667-8f90b5ae6383
+		sourceLineageTag: amount_cat
+		summarizeBy: none
+		sourceColumn: amount_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column present_residence_cat
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4c8fc790-70a0-481d-a96d-85870e5b3e90
+		sourceLineageTag: present_residence_cat
+		summarizeBy: none
+		sourceColumn: present_residence_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_cat
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 40d88e22-c19e-47f8-bfea-8c93a3afe6e1
+		sourceLineageTag: age_cat
+		summarizeBy: none
+		sourceColumn: age_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_credits_cat
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 529514bd-c4e6-4945-bd50-c1573465f2fc
+		sourceLineageTag: number_credits_cat
+		summarizeBy: none
+		sourceColumn: number_credits_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column people_liable_cat
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 91661742-b40e-4423-8f75-88a8d2f75760
+		sourceLineageTag: people_liable_cat
+		summarizeBy: none
+		sourceColumn: people_liable_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: ef4b555d-213e-40be-b539-1f6f1e78e1c6
+		sourceLineageTag: amount
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 53bc46d7-b76d-4a56-9f0d-35c85359566f
+		sourceLineageTag: status
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_history
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cc6e58f1-0508-444e-8ed8-2646b440d33b
+		sourceLineageTag: credit_history
+		summarizeBy: none
+		sourceColumn: credit_history
+
+		annotation SummarizationSetBy = Automatic
+
+	column purpose
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 5e01996b-c652-4f99-8aab-295701df5a1b
+		sourceLineageTag: purpose
+		summarizeBy: none
+		sourceColumn: purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column savings
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 980ea018-c1d9-4399-97f4-327e797b83c5
+		sourceLineageTag: savings
+		summarizeBy: none
+		sourceColumn: savings
+
+		annotation SummarizationSetBy = Automatic
+
+	column employment_duration
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4916a609-2628-42f5-82c2-6f1226ef4dcc
+		sourceLineageTag: employment_duration
+		summarizeBy: none
+		sourceColumn: employment_duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column personal_status_sex
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 90d0d6c6-7bbb-414c-a309-52d1b9a1881d
+		sourceLineageTag: personal_status_sex
+		summarizeBy: none
+		sourceColumn: personal_status_sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_debtors
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 0c0b9c54-01f7-4ecd-abc1-d159d22cf5ad
+		sourceLineageTag: other_debtors
+		summarizeBy: none
+		sourceColumn: other_debtors
+
+		annotation SummarizationSetBy = Automatic
+
+	column property
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 4d9ad6a7-a72f-401b-8a90-23d2f26952f0
+		sourceLineageTag: property
+		summarizeBy: none
+		sourceColumn: property
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_installment_plans
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: e8d1adbb-e46c-41f2-94a5-bdd1c6d85356
+		sourceLineageTag: other_installment_plans
+		summarizeBy: none
+		sourceColumn: other_installment_plans
+
+		annotation SummarizationSetBy = Automatic
+
+	column housing
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 9a8c9cea-4702-427c-98f3-9ee022ed3b4d
+		sourceLineageTag: housing
+		summarizeBy: none
+		sourceColumn: housing
+
+		annotation SummarizationSetBy = Automatic
+
+	column job
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: a1873916-5b0f-4b5f-aaf8-795fffd1a8ec
+		sourceLineageTag: job
+		summarizeBy: none
+		sourceColumn: job
+
+		annotation SummarizationSetBy = Automatic
+
+	column telephone
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: 52c1838d-f519-4617-8690-f8b54f3738c8
+		sourceLineageTag: telephone
+		summarizeBy: none
+		sourceColumn: telephone
+
+		annotation SummarizationSetBy = Automatic
+
+	column foreign_worker
+		dataType: string
+		sourceProviderType: varchar(8000)
+		lineageTag: cdf7ac2c-7fa4-4883-a84b-d4135bb63b33
+		sourceLineageTag: foreign_worker
+		summarizeBy: none
+		sourceColumn: foreign_worker
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_risk
+		dataType: int64
+		formatString: 0
+		sourceProviderType: bigint
+		lineageTag: 5f25afc4-ff3a-45d0-a73d-d2610837f10e
+		sourceLineageTag: credit_risk
+		summarizeBy: sum
+		sourceColumn: credit_risk
+
+		annotation SummarizationSetBy = Automatic
+
+	partition credit_scoring = entity
+		mode: directLake
+		source
+			entityName: credit_scoring
+			schemaName: dbo
+			expressionSource: DatabaseQuery
+
+	annotation PBI_ResultType = Table
+
