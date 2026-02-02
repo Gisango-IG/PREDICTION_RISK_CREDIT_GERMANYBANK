@@ -1241,3 +1241,19 @@ decision = "ACCEPTE" if prediction == 0 else "REFUSE"
 # META   "language": "python",
 # META   "language_group": "synapse_pyspark"
 # META }
+
+# CELL ********************
+
+from pyspark.ml import PipelineModel
+
+loaded_model = PipelineModel.load(
+    "abfss://76eb933a-950e-4895-8f00-76ccb4a5f37d@onelake.dfs.fabric.microsoft.com/3ee4579c-22ab-494d-8b27-fbf8a3b342fb/Files/CREDIT_SCORING_MODEL"
+)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
