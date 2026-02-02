@@ -1,0 +1,42 @@
+{
+  "config": "{\"version\":\"5.69\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU12\",\"version\":{\"visual\":\"2.5.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"},\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "layoutOptimization": 0,
+  "resourcePackages": [
+    {
+      "resourcePackage": {
+        "disabled": false,
+        "items": [
+          {
+            "name": "CY25SU12",
+            "path": "BaseThemes/CY25SU12.json",
+            "type": 202
+          }
+        ],
+        "name": "SharedResources",
+        "type": 2
+      }
+    }
+  ],
+  "sections": [
+    {
+      "config": "{}",
+      "displayName": "score credit par audiance",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "c57a9cddaf23f123019b",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"efe94877d7b5223cf300\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.89406121674316,\"y\":48.056868767038196,\"z\":0,\"width\":525.798681804065,\"height\":236.0440318851582,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"credit_scoring.credit_risk\",\"active\":true}],\"Y\":[{\"queryRef\":\"credit_scoring.Total number of credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"},\"Name\":\"credit_scoring.Total number of credit\",\"NativeReferenceName\":\"Total number of credit\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'InsideCenter'\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 236.04,
+          "width": 525.80,
+          "x": 9.89,
+          "y": 48.06,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    }
+  ]
+}

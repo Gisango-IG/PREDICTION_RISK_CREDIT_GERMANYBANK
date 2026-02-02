@@ -28,6 +28,20 @@ table credit_scoring
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
+	measure Risque = ```
+			
+			IF(
+			    SELECTEDVALUE('credit_scoring'[credit_risk]) = 1,
+			    "à risque",
+			    "sans risque"
+			)
+			
+			```
+		formatString: 0
+		lineageTag: c97d535b-564a-4783-afd2-123ec1b81b2f
+
+		changedProperty = Name
+
 	column duration_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
@@ -230,13 +244,14 @@ table credit_scoring
 		annotation SummarizationSetBy = Automatic
 
 	column credit_risk
-		dataType: int64
-		formatString: 0
+		dataType: string
 		sourceProviderType: bigint
 		lineageTag: 5f25afc4-ff3a-45d0-a73d-d2610837f10e
 		sourceLineageTag: credit_risk
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: credit_risk
+
+		changedProperty = DataType
 
 		annotation SummarizationSetBy = Automatic
 

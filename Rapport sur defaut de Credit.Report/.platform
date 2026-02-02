@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Rapport sur defaut de Credit"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "26ca82bf-8951-94c1-406c-fa8176fd7c98"
+  }
+}
