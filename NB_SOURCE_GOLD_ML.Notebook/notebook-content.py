@@ -1135,7 +1135,105 @@ p_default
 
 # CELL ********************
 
-model.write().overwrite().save("/mnt/models/credit_scoring_v1")
+#sauvegarde du model dans le lakehouse Gold et mise en commentaire des commandes pour empecher la maj du model
+#model.write() \
+#    .overwrite() \
+#   .save("abfss://76eb933a-950e-4895-8f00-76ccb4a5f37d@onelake.dfs.fabric.microsoft.com/3ee4579c-22ab-494d-8b27-fbf8a3b342fb/Files/CREDIT_SCORING_MODEL")
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+payload = {
+    "status": "no checking account",
+    "credit_history": "existing credits paid back duly till now",
+    "purpose": "car (new)",
+    "savings": "... < 100 DM",
+    "employment_duration": "1 <= ... < 4 years",
+    "personal_status_sex": "male : single",
+    "other_debtors": "none",
+    "property": "car or other",
+    "other_installment_plans": "none",
+    "housing": "own",
+    "job": "skilled employee/official",
+    "telephone": "no",
+    "foreign_worker": "yes",
+    "duration_cat": "13-24",
+    "amount_cat": "1001-2000",
+    "present_residence_cat": "2-3",
+    "age_cat": "25-35",
+    "number_credits_cat": "0-1",
+    "people_liable_cat": "1"
+}
+
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df_request = spark.createDataFrame([payload])
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+from pyspark.ml import PipelineModel
+
+loaded_model = PipelineModel.load(
+    "abfss://76eb933a-950e-4895-8f00-76ccb4a5f37d@onelake.dfs.fabric.microsoft.com/3ee4579c-22ab-494d-8b27-fbf8a3b342fb/Files/CREDIT_SCORING_MODEL"
+)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+result = loaded_model.transform(df_request)
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+row = result.select("probability", "prediction").collect()[0]
+
+p_default = float(row["probability"][1])
+prediction = int(row["prediction"])
+decision = "ACCEPTE" if prediction == 0 else "REFUSE"
+
+{
+    "probability_default": p_default,
+    "prediction": prediction,
+    "decision": decision
+}
+
 
 # METADATA ********************
 
