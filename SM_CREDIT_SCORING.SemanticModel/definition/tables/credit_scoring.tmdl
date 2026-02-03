@@ -2,12 +2,23 @@ table credit_scoring
 	lineageTag: 52cdab89-32f5-47b2-a8c2-fe2e791d4e8d
 	sourceLineageTag: [dbo].[credit_scoring]
 
-	measure 'default rate' = DIVIDE( CALCULATE(COUNTROWS('credit_scoring'), 'credit_scoring'[credit_risk] = 1), COUNTROWS('credit_scoring') )
+	measure 'default rate' = ```
+			
+			DIVIDE(
+			    CALCULATE(
+			        COUNTROWS('credit_scoring'),
+			        FILTER('credit_scoring', 'credit_scoring'[credit_risk] = TRUE())
+			    ),
+			    COUNTROWS('credit_scoring')
+			)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
 		lineageTag: 36ea0c5d-b143-44d5-8eff-f165e124442b
 
 		changedProperty = Name
 
-		annotation PBI_FormatHint = {"isGeneralNumber":true}
+		changedProperty = FormatString
 
 	measure 'Total number of credit' = COUNTROWS('credit_scoring')
 		formatString: 0
@@ -28,17 +39,87 @@ table credit_scoring
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
-	measure Risque = ```
+	measure 'Pct Credit Risk' = ```
 			
-			IF(
-			    SELECTEDVALUE('credit_scoring'[credit_risk]) = 1,
-			    "à risque",
-			    "sans risque"
+			DIVIDE(
+			    [Total number of credit],
+			    CALCULATE(
+			        [Total number of credit],
+			        ALL('credit_scoring')
+			    )
+			)
+			
+			```
+		lineageTag: c97d535b-564a-4783-afd2-123ec1b81b2f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Exposure at Risk' = ```
+			
+			CALCULATE(
+			    SUM('credit_scoring'[amount]),
+			    'credit_scoring'[credit_risk] = TRUE()
+			)
+			
+			```
+		formatString: 0.0
+		lineageTag: 12ea30d4-64bf-4c33-b1d0-51453935593d
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Risk Density' = ```
+			
+			DIVIDE(
+			    [Exposure at Risk],
+			    [Total amount credit]
+			)
+			
+			```
+		formatString: 0.00\ %;-0.00\ %;0.00\ %
+		lineageTag: 7a212f48-8dcc-4c55-8218-4a04e0e7a5d7
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Nb True' = ```
+			
+			CALCULATE(
+			    COUNTROWS('credit_scoring'),
+			    'credit_scoring'[credit_risk] = TRUE()
+			)
+			
+			
+			```
+		formatString: 0
+		lineageTag: 1a026c44-37b0-4c6f-b3df-b8e9e3ce277d
+
+		changedProperty = Name
+
+	measure 'Nb False' = ```
+			
+			CALCULATE(
+			    COUNTROWS('credit_scoring'),
+			    'credit_scoring'[credit_risk] = FALSE()
 			)
 			
 			```
 		formatString: 0
-		lineageTag: c97d535b-564a-4783-afd2-123ec1b81b2f
+		lineageTag: b41d6ea5-3c12-44a9-8af5-28c8bfb2401c
+
+		changedProperty = Name
+
+	measure TrueGreaterThanFalse = ```
+			
+			IF([Nb True] > [Nb False], 1, 0)
+			
+			```
+		formatString: 0
+		lineageTag: 722074d4-fbac-478b-88d3-8ad779c0f950
 
 		changedProperty = Name
 
@@ -244,7 +325,8 @@ table credit_scoring
 		annotation SummarizationSetBy = Automatic
 
 	column credit_risk
-		dataType: string
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
 		sourceProviderType: bigint
 		lineageTag: 5f25afc4-ff3a-45d0-a73d-d2610837f10e
 		sourceLineageTag: credit_risk
