@@ -1,6 +1,10 @@
 {
-  "config": "{\"version\":\"5.69\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU12\",\"version\":{\"visual\":\"2.5.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"},\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.69\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY25SU12\",\"type\":2,\"version\":{\"visual\":\"2.5.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
   "layoutOptimization": 0,
+  "publicCustomVisuals": [
+    "BoxandWhiskerByMAQ1823AD39DT234AB532063E128AX",
+    "RiskHeatmapA1E4D7191E504BBA9F44FE76C254B319"
+  ],
   "resourcePackages": [
     {
       "resourcePackage": {
@@ -27,10 +31,55 @@
       "name": "c57a9cddaf23f123019b",
       "visualContainers": [
         {
-          "config": "{\"name\":\"efe94877d7b5223cf300\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.89406121674316,\"y\":48.056868767038196,\"z\":0,\"width\":525.798681804065,\"height\":236.0440318851582,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"credit_scoring.credit_risk\",\"active\":true}],\"Y\":[{\"queryRef\":\"credit_scoring.Total number of credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"},\"Name\":\"credit_scoring.Total number of credit\",\"NativeReferenceName\":\"Total number of credit\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'InsideCenter'\"}}}}}]}}}",
+          "config": "{\"name\":\"4c6adef2ed87e0fcc8ef\",\"layouts\":[{\"id\":0,\"position\":{\"x\":710.9589702888298,\"y\":21.201559750163913,\"z\":4,\"width\":494.7030608371579,\"height\":262.8993409020325,\"tabOrder\":4}}],\"singleVisual\":{\"visualType\":\"treemap\",\"projections\":{\"Group\":[{\"queryRef\":\"credit_scoring.age_cat\",\"active\":true}],\"Values\":[{\"queryRef\":\"credit_scoring.Total number of credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"age_cat\"},\"Name\":\"credit_scoring.age_cat\",\"NativeReferenceName\":\"age_cat\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"},\"Name\":\"credit_scoring.Total number of credit\",\"NativeReferenceName\":\"Total number of credit\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"labelPrecision\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}],\"legend\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 262.90,
+          "width": 494.70,
+          "x": 710.96,
+          "y": 21.20,
+          "z": 4.00
+        },
+        {
+          "config": "{\"name\":\"69d0f96e26f686684939\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.89406121674316,\"y\":329.3308947858794,\"z\":2,\"width\":347.70557990268816,\"height\":262.8993409020325,\"tabOrder\":2}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"credit_scoring.purpose\",\"active\":true}],\"Columns\":[{\"queryRef\":\"credit_scoring.credit_risk\",\"active\":true}],\"Values\":[{\"queryRef\":\"credit_scoring.Total amount credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"purpose\"},\"Name\":\"credit_scoring.purpose\",\"NativeReferenceName\":\"purpose\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Arithmetic\":{\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total amount credit\"}},\"Right\":{\"ScopedEval\":{\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total amount credit\"}},\"Scope\":[{\"RoleRef\":{\"Role\":\"Rows\"}}]}},\"Operator\":3},\"Name\":\"credit_scoring.Total amount credit\",\"NativeReferenceName\":\"%TL Total amount credit\"}],\"OrderBy\":[{\"Direction\":1,\"Expression\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"purpose\"}}}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[{\"expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"credit_scoring\"}},\"Property\":\"Total amount credit\"}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false},{\"expression\":{\"Arithmetic\":{\"Left\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"credit_scoring\"}},\"Property\":\"Total amount credit\"}},\"Right\":{\"ScopedEval\":{\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"credit_scoring\"}},\"Property\":\"Total amount credit\"}},\"Scope\":[{\"RoleRef\":{\"Role\":\"Columns\"}}]}},\"Operator\":3}},\"type\":\"Advanced\",\"howCreated\":1,\"isHiddenInViewMode\":false}]",
+          "height": 262.90,
+          "width": 347.71,
+          "x": 9.89,
+          "y": 329.33,
+          "z": 2.00
+        },
+        {
+          "config": "{\"name\":\"9a3f5093d9d092791b7d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":418.37744573656784,\"y\":48.056868767038196,\"z\":1,\"width\":337.811518685945,\"height\":258.65902895199974,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"barChart\",\"projections\":{\"Category\":[{\"queryRef\":\"credit_scoring.credit_risk\",\"active\":true}],\"Y\":[{\"queryRef\":\"credit_scoring.Total amount credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total amount credit\"},\"Name\":\"credit_scoring.Total amount credit\",\"NativeReferenceName\":\"Total amount credit\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total amount credit\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 258.66,
+          "width": 337.81,
+          "x": 418.38,
+          "y": 48.06,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"bfd266439f72e640eb71\",\"layouts\":[{\"id\":0,\"position\":{\"x\":368.90713965285204,\"y\":394.34901135304875,\"z\":5,\"width\":342.05183063597775,\"height\":325.09058283584665,\"tabOrder\":5}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"credit_scoring.age_cat\",\"active\":true}],\"Columns\":[{\"queryRef\":\"credit_scoring.credit_risk\",\"active\":true}],\"Values\":[{\"queryRef\":\"credit_scoring.Total number of credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"age_cat\"},\"Name\":\"credit_scoring.age_cat\",\"NativeReferenceName\":\"age_cat\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"},\"Name\":\"credit_scoring.Total number of credit\",\"NativeReferenceName\":\"Total number of credit\"}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{}}}",
+          "filters": "[]",
+          "height": 325.09,
+          "width": 342.05,
+          "x": 368.91,
+          "y": 394.35,
+          "z": 5.00
+        },
+        {
+          "config": "{\"name\":\"ec97f249cc78c13a075b\",\"layouts\":[{\"id\":0,\"position\":{\"x\":710.9589702888298,\"y\":306.7158977190379,\"z\":3,\"width\":542.7599296041961,\"height\":412.7236964698575,\"tabOrder\":3}}],\"singleVisual\":{\"visualType\":\"hundredPercentStackedBarChart\",\"projections\":{\"Category\":[{\"queryRef\":\"credit_scoring.credit_history\",\"active\":true}],\"Series\":[{\"queryRef\":\"credit_scoring.credit_risk\"}],\"Y\":[{\"queryRef\":\"credit_scoring.Total number of credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_history\"},\"Name\":\"credit_scoring.credit_history\",\"NativeReferenceName\":\"credit_history\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"},\"Name\":\"credit_scoring.Total number of credit\",\"NativeReferenceName\":\"Total number of credit\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 412.72,
+          "width": 542.76,
+          "x": 710.96,
+          "y": 306.72,
+          "z": 3.00
+        },
+        {
+          "config": "{\"name\":\"efe94877d7b5223cf300\",\"layouts\":[{\"id\":0,\"position\":{\"x\":9.89406121674316,\"y\":48.056868767038196,\"z\":0,\"width\":408.4833845198247,\"height\":236.0440318851582,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"columnChart\",\"projections\":{\"Category\":[{\"queryRef\":\"credit_scoring.credit_risk\",\"active\":true}],\"Y\":[{\"queryRef\":\"credit_scoring.Total number of credit\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"credit_risk\"},\"Name\":\"credit_scoring.credit_risk\",\"NativeReferenceName\":\"credit_risk\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"},\"Name\":\"credit_scoring.Total number of credit\",\"NativeReferenceName\":\"Total number of credit\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total number of credit\"}}}]},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"labels\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"labelPosition\":{\"expr\":{\"Literal\":{\"Value\":\"'InsideCenter'\"}}}}}]}}}",
           "filters": "[]",
           "height": 236.04,
-          "width": 525.80,
+          "width": 408.48,
           "x": 9.89,
           "y": 48.06,
           "z": 0.00
