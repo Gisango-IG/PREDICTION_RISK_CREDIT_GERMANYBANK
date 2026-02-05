@@ -6,7 +6,21 @@
 # META   "kernel_info": {
 # META     "name": "synapse_pyspark"
 # META   },
-# META   "dependencies": {}
+# META   "dependencies": {
+# META     "lakehouse": {
+# META       "default_lakehouse": "1a6e6347-3612-44f5-9d2d-e84e90137cae",
+# META       "default_lakehouse_name": "LK_SOURCE_CREDIT_SILVER",
+# META       "default_lakehouse_workspace_id": "76eb933a-950e-4895-8f00-76ccb4a5f37d",
+# META       "known_lakehouses": [
+# META         {
+# META           "id": "1a6e6347-3612-44f5-9d2d-e84e90137cae"
+# META         },
+# META         {
+# META           "id": "3ee4579c-22ab-494d-8b27-fbf8a3b342fb"
+# META         }
+# META       ]
+# META     }
+# META   }
 # META }
 
 # CELL ********************
@@ -668,7 +682,13 @@ df_final_opt = (
 
 # CELL ********************
 
-display(df_final_opt.limit(13))
+# creation of gold opt tables in  lakehouse Gold for reporting in PowerBi via Semantic Model and ML
+
+# the Path for lakehouse(gold) reporting
+gold_credit_scoring_path="abfss://76eb933a-950e-4895-8f00-76ccb4a5f37d@onelake.dfs.fabric.microsoft.com/3ee4579c-22ab-494d-8b27-fbf8a3b342fb/Tables/dbo/credit_scoring_gurobi_opt"
+
+# Saving the Delta table into lakehouse
+df_final_opt.write.format("delta").mode("overwrite").save(gold_credit_scoring_path)
 
 # METADATA ********************
 
