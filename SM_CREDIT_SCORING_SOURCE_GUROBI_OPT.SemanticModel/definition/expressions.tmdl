@@ -1,0 +1,11 @@
+expression 'DirectLake - LK_SOURCE_CREDIT_GOLD' =
+		let
+		    Source = AzureStorage.DataLake("https://onelake.dfs.fabric.microsoft.com/76eb933a-950e-4895-8f00-76ccb4a5f37d/3ee4579c-22ab-494d-8b27-fbf8a3b342fb", [HierarchicalNavigation=true])
+		in
+		    Source
+	lineageTag: 2a4be549-65c2-4868-88ef-4b7b518fcf6a
+
+	annotation PBI_IncludeFutureArtifacts = False
+
+	annotation PBI_RemovedChildren = [{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[credit_scoring_ml]"}},"objectType":"Table"},{"remoteItemId":{"analysisServicesObject":{"sourceName":null,"sourceLineageTag":"[dbo].[credit_scoring]"}},"objectType":"Table"}]
+

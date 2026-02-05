@@ -1,0 +1,320 @@
+table credit_scoring_gurobi_opt
+	lineageTag: 638c904d-58bc-4e43-a74a-27cef6dcf6d1
+	sourceLineageTag: [dbo].[credit_scoring_gurobi_opt]
+
+	column id
+		dataType: int64
+		formatString: 0
+		lineageTag: 4be11b95-4837-4008-b436-2dba1befc0d4
+		sourceLineageTag: id
+		summarizeBy: sum
+		sourceColumn: id
+
+		annotation SummarizationSetBy = Automatic
+
+	column duration_cat
+		dataType: string
+		lineageTag: 03c42461-b92b-42df-a07e-5d2f546fd38e
+		sourceLineageTag: duration_cat
+		summarizeBy: none
+		sourceColumn: duration_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount_cat
+		dataType: string
+		lineageTag: e2a67713-3b1f-4cbc-bcef-b1ff93d53125
+		sourceLineageTag: amount_cat
+		summarizeBy: none
+		sourceColumn: amount_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column present_residence_cat
+		dataType: string
+		lineageTag: 28f4c10f-76e2-45bb-88ea-c0b1868a9559
+		sourceLineageTag: present_residence_cat
+		summarizeBy: none
+		sourceColumn: present_residence_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column age_cat
+		dataType: string
+		lineageTag: b49f0b16-98a9-4ede-9fb3-6846637ef46d
+		sourceLineageTag: age_cat
+		summarizeBy: none
+		sourceColumn: age_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column number_credits_cat
+		dataType: string
+		lineageTag: b65bda1e-fd47-442a-bb80-7f36db54df09
+		sourceLineageTag: number_credits_cat
+		summarizeBy: none
+		sourceColumn: number_credits_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column people_liable_cat
+		dataType: string
+		lineageTag: e93934f0-884a-4a1f-9bea-b4e0e94712e7
+		sourceLineageTag: people_liable_cat
+		summarizeBy: none
+		sourceColumn: people_liable_cat
+
+		annotation SummarizationSetBy = Automatic
+
+	column amount
+		dataType: int64
+		formatString: 0
+		lineageTag: 057620ef-066a-44b1-828f-8b516f1ce108
+		sourceLineageTag: amount
+		summarizeBy: sum
+		sourceColumn: amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column status
+		dataType: string
+		lineageTag: e19d21f2-77a3-467f-bf1d-576ba1cea6ff
+		sourceLineageTag: status
+		summarizeBy: none
+		sourceColumn: status
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_history
+		dataType: string
+		lineageTag: 4cc095ba-9afe-4885-8806-373171df6e92
+		sourceLineageTag: credit_history
+		summarizeBy: none
+		sourceColumn: credit_history
+
+		annotation SummarizationSetBy = Automatic
+
+	column purpose
+		dataType: string
+		lineageTag: bf5b333b-f263-43e7-8db2-475c38796ac7
+		sourceLineageTag: purpose
+		summarizeBy: none
+		sourceColumn: purpose
+
+		annotation SummarizationSetBy = Automatic
+
+	column savings
+		dataType: string
+		lineageTag: 5ee04689-770d-4a8b-9b35-6a2ec327fde5
+		sourceLineageTag: savings
+		summarizeBy: none
+		sourceColumn: savings
+
+		annotation SummarizationSetBy = Automatic
+
+	column employment_duration
+		dataType: string
+		lineageTag: 2481a4bf-2d3e-41db-a719-2222ab3c6c46
+		sourceLineageTag: employment_duration
+		summarizeBy: none
+		sourceColumn: employment_duration
+
+		annotation SummarizationSetBy = Automatic
+
+	column personal_status_sex
+		dataType: string
+		lineageTag: 728e1c5e-31bb-4374-a1f7-7f82be1d9d35
+		sourceLineageTag: personal_status_sex
+		summarizeBy: none
+		sourceColumn: personal_status_sex
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_debtors
+		dataType: string
+		lineageTag: 61ab2a6a-a078-4011-87b9-d8664ecf460f
+		sourceLineageTag: other_debtors
+		summarizeBy: none
+		sourceColumn: other_debtors
+
+		annotation SummarizationSetBy = Automatic
+
+	column property
+		dataType: string
+		lineageTag: 404fbcef-1cf9-4272-aca2-bcf8e3a7ae10
+		sourceLineageTag: property
+		summarizeBy: none
+		sourceColumn: property
+
+		annotation SummarizationSetBy = Automatic
+
+	column other_installment_plans
+		dataType: string
+		lineageTag: 225a2769-f87a-4321-9242-cf2090c40b6c
+		sourceLineageTag: other_installment_plans
+		summarizeBy: none
+		sourceColumn: other_installment_plans
+
+		annotation SummarizationSetBy = Automatic
+
+	column housing
+		dataType: string
+		lineageTag: 5ce550b6-85da-440e-95fc-cb4f24ff01a6
+		sourceLineageTag: housing
+		summarizeBy: none
+		sourceColumn: housing
+
+		annotation SummarizationSetBy = Automatic
+
+	column job
+		dataType: string
+		lineageTag: 6090ae14-e5ae-4b32-93f8-7e395f34b29b
+		sourceLineageTag: job
+		summarizeBy: none
+		sourceColumn: job
+
+		annotation SummarizationSetBy = Automatic
+
+	column telephone
+		dataType: string
+		lineageTag: 1083fd69-2983-4c6c-acb6-c63a72100382
+		sourceLineageTag: telephone
+		summarizeBy: none
+		sourceColumn: telephone
+
+		annotation SummarizationSetBy = Automatic
+
+	column foreign_worker
+		dataType: string
+		lineageTag: 2cbf2291-1bf0-4ef7-939c-074f2ea517c7
+		sourceLineageTag: foreign_worker
+		summarizeBy: none
+		sourceColumn: foreign_worker
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_risk
+		dataType: int64
+		formatString: 0
+		lineageTag: cadfeb22-d240-4754-aa9d-dd4891c2becc
+		sourceLineageTag: credit_risk
+		summarizeBy: sum
+		sourceColumn: credit_risk
+
+		annotation SummarizationSetBy = Automatic
+
+	column PD_history
+		dataType: double
+		lineageTag: 323c814f-e891-4c41-a2d5-ed8d6ac9463c
+		sourceLineageTag: PD_history
+		summarizeBy: sum
+		sourceColumn: PD_history
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column PD
+		dataType: double
+		lineageTag: 773bb2ad-d542-4dab-83ec-46034e93de1d
+		sourceLineageTag: PD
+		summarizeBy: sum
+		sourceColumn: PD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column LGD
+		dataType: double
+		lineageTag: 84ddd0f3-7236-4556-b72f-83d9c89ece5b
+		sourceLineageTag: LGD
+		summarizeBy: sum
+		sourceColumn: LGD
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column profit_margin
+		dataType: double
+		lineageTag: 42d7ff49-58c4-4dd6-b6d3-11da4648915d
+		sourceLineageTag: profit_margin
+		summarizeBy: sum
+		sourceColumn: profit_margin
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column credit_amount
+		dataType: int64
+		formatString: 0
+		lineageTag: ab36643b-025f-4b5d-b533-2bd00badb37b
+		sourceLineageTag: credit_amount
+		summarizeBy: sum
+		sourceColumn: credit_amount
+
+		annotation SummarizationSetBy = Automatic
+
+	column expected_profit
+		dataType: double
+		lineageTag: 3ef7f745-65d9-4ba1-8644-f10f108920c8
+		sourceLineageTag: expected_profit
+		summarizeBy: sum
+		sourceColumn: expected_profit
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_loss
+		dataType: double
+		lineageTag: 7a5483d4-7704-40ad-bbf7-08a1cfbf76e2
+		sourceLineageTag: expected_loss
+		summarizeBy: sum
+		sourceColumn: expected_loss
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column expected_value
+		dataType: double
+		lineageTag: 55f324e1-a673-47b1-97ae-915f67c3c293
+		sourceLineageTag: expected_value
+		summarizeBy: sum
+		sourceColumn: expected_value
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column exposure_at_risk
+		dataType: double
+		lineageTag: f0bbd28a-8c17-4b34-a85a-868ba361dfeb
+		sourceLineageTag: exposure_at_risk
+		summarizeBy: sum
+		sourceColumn: exposure_at_risk
+
+		annotation SummarizationSetBy = Automatic
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	column optim_choice
+		dataType: int64
+		formatString: 0
+		lineageTag: ee94b691-3058-4a8d-8069-f86c4bc728aa
+		sourceLineageTag: optim_choice
+		summarizeBy: sum
+		sourceColumn: optim_choice
+
+		annotation SummarizationSetBy = Automatic
+
+	partition credit_scoring_gurobi_opt = entity
+		mode: directLake
+		source
+			entityName: credit_scoring_gurobi_opt
+			schemaName: dbo
+			expressionSource: 'DirectLake - LK_SOURCE_CREDIT_GOLD'
+

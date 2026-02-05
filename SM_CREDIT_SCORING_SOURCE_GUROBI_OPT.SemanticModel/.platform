@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "SemanticModel",
+    "displayName": "SM_CREDIT_SCORING_SOURCE_GUROBI_OPT"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "1a2328a4-568b-8f2c-417e-055dd6d0eae2"
+  }
+}
