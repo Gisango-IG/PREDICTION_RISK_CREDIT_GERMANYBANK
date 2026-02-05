@@ -40,6 +40,23 @@ display(df_ml.limit(10))
 
 # CELL ********************
 
+# Identification des variables catégorielles et numériques
+categorical_cols = [c for c, t in df_ml.dtypes if t == "string" and c != "Class"]
+numeric_cols = [c for c, t in df_ml.dtypes if t != "string" and c != "Class"]
+
+print("Variables catégorielles :", categorical_cols)
+print("Variables numériques :", numeric_cols)
+
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # Identification categoriel columns (toutes les colonnes de type string sauf la cible)
 categorical_cols = [
     col for col, dtype in df_ml.dtypes
