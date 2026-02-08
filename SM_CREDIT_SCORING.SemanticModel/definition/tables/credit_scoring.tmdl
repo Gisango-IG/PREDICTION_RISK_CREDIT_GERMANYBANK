@@ -64,12 +64,14 @@ table credit_scoring
 			)
 			
 			```
-		formatString: 0.0
+		formatString: 0
 		lineageTag: 12ea30d4-64bf-4c33-b1d0-51453935593d
 
 		changedProperty = Name
 
 		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isDecimal":true}
 
 	measure 'Risk Density' = ```
 			
