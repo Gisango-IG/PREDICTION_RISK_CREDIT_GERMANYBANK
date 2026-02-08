@@ -126,7 +126,7 @@ table credit_scoring
 	column duration_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: ab7e462d-4576-4b56-8947-e32f31e24b8b
+		lineageTag: 46dc1aa0-a807-4c5d-a706-ea8752b5145a
 		sourceLineageTag: duration_cat
 		summarizeBy: none
 		sourceColumn: duration_cat
@@ -136,7 +136,7 @@ table credit_scoring
 	column amount_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: ecf84765-6877-4d60-b667-8f90b5ae6383
+		lineageTag: b2b5587c-aef4-4dee-961b-e3255de700ab
 		sourceLineageTag: amount_cat
 		summarizeBy: none
 		sourceColumn: amount_cat
@@ -146,7 +146,7 @@ table credit_scoring
 	column present_residence_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 4c8fc790-70a0-481d-a96d-85870e5b3e90
+		lineageTag: a9500b17-7487-43af-9c65-350feab2abfa
 		sourceLineageTag: present_residence_cat
 		summarizeBy: none
 		sourceColumn: present_residence_cat
@@ -156,7 +156,7 @@ table credit_scoring
 	column age_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 40d88e22-c19e-47f8-bfea-8c93a3afe6e1
+		lineageTag: 9c6b66ea-c655-491a-a87f-83f93f0dae2f
 		sourceLineageTag: age_cat
 		summarizeBy: none
 		sourceColumn: age_cat
@@ -166,7 +166,7 @@ table credit_scoring
 	column number_credits_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 529514bd-c4e6-4945-bd50-c1573465f2fc
+		lineageTag: 85b97223-7ec5-4d93-bb88-09e17696fcf6
 		sourceLineageTag: number_credits_cat
 		summarizeBy: none
 		sourceColumn: number_credits_cat
@@ -176,7 +176,7 @@ table credit_scoring
 	column people_liable_cat
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 91661742-b40e-4423-8f75-88a8d2f75760
+		lineageTag: 50c58b8e-43d1-4d5d-adfa-0fea252f3fe1
 		sourceLineageTag: people_liable_cat
 		summarizeBy: none
 		sourceColumn: people_liable_cat
@@ -187,7 +187,7 @@ table credit_scoring
 		dataType: int64
 		formatString: 0
 		sourceProviderType: bigint
-		lineageTag: ef4b555d-213e-40be-b539-1f6f1e78e1c6
+		lineageTag: bd1e3a76-351f-4b92-ad82-3633a0a9a90f
 		sourceLineageTag: amount
 		summarizeBy: sum
 		sourceColumn: amount
@@ -197,7 +197,7 @@ table credit_scoring
 	column status
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 53bc46d7-b76d-4a56-9f0d-35c85359566f
+		lineageTag: 88c272a3-2369-4d4b-b4d6-bf58126d5763
 		sourceLineageTag: status
 		summarizeBy: none
 		sourceColumn: status
@@ -207,7 +207,7 @@ table credit_scoring
 	column credit_history
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: cc6e58f1-0508-444e-8ed8-2646b440d33b
+		lineageTag: 407c8cce-2521-4a19-8042-923f1a823684
 		sourceLineageTag: credit_history
 		summarizeBy: none
 		sourceColumn: credit_history
@@ -217,7 +217,7 @@ table credit_scoring
 	column purpose
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 5e01996b-c652-4f99-8aab-295701df5a1b
+		lineageTag: 86461866-1ffe-411c-9945-66e6b2b9ddbc
 		sourceLineageTag: purpose
 		summarizeBy: none
 		sourceColumn: purpose
@@ -227,7 +227,7 @@ table credit_scoring
 	column savings
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 980ea018-c1d9-4399-97f4-327e797b83c5
+		lineageTag: 2d331583-98a7-4869-9ca9-601ae0ce36c6
 		sourceLineageTag: savings
 		summarizeBy: none
 		sourceColumn: savings
@@ -237,7 +237,7 @@ table credit_scoring
 	column employment_duration
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 4916a609-2628-42f5-82c2-6f1226ef4dcc
+		lineageTag: f22339b8-1e95-458b-b371-769b192aec23
 		sourceLineageTag: employment_duration
 		summarizeBy: none
 		sourceColumn: employment_duration
@@ -247,7 +247,7 @@ table credit_scoring
 	column personal_status_sex
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 90d0d6c6-7bbb-414c-a309-52d1b9a1881d
+		lineageTag: a910f4f8-65c3-4b4a-995b-548637355d21
 		sourceLineageTag: personal_status_sex
 		summarizeBy: none
 		sourceColumn: personal_status_sex
@@ -257,7 +257,7 @@ table credit_scoring
 	column other_debtors
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 0c0b9c54-01f7-4ecd-abc1-d159d22cf5ad
+		lineageTag: 9ab66fbe-aaa3-4543-956e-bfb22e71d7d0
 		sourceLineageTag: other_debtors
 		summarizeBy: none
 		sourceColumn: other_debtors
@@ -267,7 +267,7 @@ table credit_scoring
 	column property
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 4d9ad6a7-a72f-401b-8a90-23d2f26952f0
+		lineageTag: 6af0e5b5-b3b7-4c04-95e6-37371fccd8b8
 		sourceLineageTag: property
 		summarizeBy: none
 		sourceColumn: property
@@ -277,7 +277,7 @@ table credit_scoring
 	column other_installment_plans
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: e8d1adbb-e46c-41f2-94a5-bdd1c6d85356
+		lineageTag: 05cb9ba3-99c0-40f2-b9ce-a02a34e868d9
 		sourceLineageTag: other_installment_plans
 		summarizeBy: none
 		sourceColumn: other_installment_plans
@@ -287,7 +287,7 @@ table credit_scoring
 	column housing
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 9a8c9cea-4702-427c-98f3-9ee022ed3b4d
+		lineageTag: 01c0daba-8154-43c6-b331-54d73aa122e8
 		sourceLineageTag: housing
 		summarizeBy: none
 		sourceColumn: housing
@@ -297,7 +297,7 @@ table credit_scoring
 	column job
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: a1873916-5b0f-4b5f-aaf8-795fffd1a8ec
+		lineageTag: 124142a0-7bcc-4819-99d9-cb7b4704e6e1
 		sourceLineageTag: job
 		summarizeBy: none
 		sourceColumn: job
@@ -307,7 +307,7 @@ table credit_scoring
 	column telephone
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: 52c1838d-f519-4617-8690-f8b54f3738c8
+		lineageTag: 0a674e76-5a56-44f1-83a0-9b756f3dc6b6
 		sourceLineageTag: telephone
 		summarizeBy: none
 		sourceColumn: telephone
@@ -317,7 +317,7 @@ table credit_scoring
 	column foreign_worker
 		dataType: string
 		sourceProviderType: varchar(8000)
-		lineageTag: cdf7ac2c-7fa4-4883-a84b-d4135bb63b33
+		lineageTag: c4af3cc5-47e7-438a-85da-04b6419123ac
 		sourceLineageTag: foreign_worker
 		summarizeBy: none
 		sourceColumn: foreign_worker
@@ -328,7 +328,7 @@ table credit_scoring
 		dataType: boolean
 		formatString: """TRUE"";""TRUE"";""FALSE"""
 		sourceProviderType: bigint
-		lineageTag: 5f25afc4-ff3a-45d0-a73d-d2610837f10e
+		lineageTag: 99062a2f-b582-4dca-9608-f04779867fbc
 		sourceLineageTag: credit_risk
 		summarizeBy: none
 		sourceColumn: credit_risk
