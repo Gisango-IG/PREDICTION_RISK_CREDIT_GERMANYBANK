@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "Rapport sur defaut de Credit -Optmisation crédit grace au solveur Gurobi"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "6dc3f674-f9ee-b9dc-4a98-f57a929b65a1"
+  }
+}
