@@ -2,6 +2,392 @@ table credit_scoring_gurobi_opt
 	lineageTag: 638c904d-58bc-4e43-a74a-27cef6dcf6d1
 	sourceLineageTag: [dbo].[credit_scoring_gurobi_opt]
 
+	measure 'Credit Risk Niveau' =
+			
+			IF ( 'credit_scoring_gurobi_opt'[credit_risk] = TRUE(),
+			     "Risque élevé",
+			     "Risque faible"
+			)
+		lineageTag: bd26925d-9f87-49d8-af71-2f8c6c73c223
+
+		changedProperty = Name
+
+	measure 'Total Credits' =
+			
+			COUNTROWS ( 'credit_scoring_gurobi_opt' )
+		formatString: 0
+		lineageTag: bac255e5-ce5c-453e-bf44-17dd9ed8ab8e
+
+		changedProperty = Name
+
+	measure 'Total Amount' =
+			
+			SUM ( 'credit_scoring_gurobi_opt'[credit_amount] )
+		formatString: 0
+		lineageTag: 3d8fa4e1-675d-4fb7-9c6e-39e6f10bd8c0
+
+		changedProperty = Name
+
+	measure 'Total Expected Profit' =
+			
+			SUM ( 'credit_scoring_gurobi_opt'[expected_profit] )
+		lineageTag: d32b5128-3379-40bf-a82c-9f4dece08b5f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expected Loss' =
+			
+			SUM ( 'credit_scoring_gurobi_opt'[expected_loss] )
+		lineageTag: b572af55-1e5d-4987-993d-1f4ce422267c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Expected Value' =
+			
+			SUM ( 'credit_scoring_gurobi_opt'[expected_value] )
+		lineageTag: da529e2d-0c0b-47d2-9062-3e5248c9275f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Exposure at Risk' =
+			
+			SUM ( 'credit_scoring_gurobi_opt'[exposure_at_risk] )
+		lineageTag: 5bcde170-87a1-49c5-a743-856166836a3e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average PD' =
+			
+			AVERAGE ( 'credit_scoring_gurobi_opt'[PD] )
+		lineageTag: 3b6e3dc3-e4fa-42cf-89c5-cd8d54e88c8d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average LGD' =
+			
+			AVERAGE ( 'credit_scoring_gurobi_opt'[LGD] )
+		lineageTag: a5876d71-65bc-4c73-bfb6-1f6d2aedf2b9
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Total Credits – Baseline' = [Total Credits]
+		formatString: 0
+		lineageTag: e42d7d6d-2ac5-4cbe-b112-e92edfb648ea
+
+		changedProperty = Name
+
+	measure 'Total Credits – Optimized' =
+			
+			CALCULATE (
+			    [Total Credits],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		formatString: 0
+		lineageTag: dad595ba-790c-4115-9fb3-f11fa0de0728
+
+		changedProperty = Name
+
+	measure 'Total Amount – Baseline' = [Total Amount]
+		formatString: 0.00
+		lineageTag: 5841cd25-f7a1-4652-a68f-0d4691748937
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Total Amount – Optimized' =
+			
+			CALCULATE (
+			    [Total Amount],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		formatString: 0.00
+		lineageTag: eb540843-8844-442c-976c-50f0ac6bf933
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Expected Profit – Baseline' = [Total Expected Profit]
+		lineageTag: 90d565d0-f138-4dea-af23-657c38da96ab
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expected Profit – Optimized' =
+			
+			CALCULATE (
+			    [Total Expected Profit],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		formatString: 0
+		lineageTag: ac7341e5-6ae8-45af-b8b6-9aad4019a11d
+
+		changedProperty = Name
+
+	measure 'Expected Loss – Baseline' = [Total Expected Loss]
+		lineageTag: 4cbf31c2-b6a4-4b10-8a6e-3e485bde1c12
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expected Loss – Optimized' =
+			
+			CALCULATE (
+			    [Total Expected Loss],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		lineageTag: bf7b1a83-f740-4a60-80de-9c25239ea14a
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expected Value – Baseline' = [Total Expected Value]
+		lineageTag: 7da579cd-44b6-430a-8d7d-4b084df9f2a3
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expected Value – Optimized' =
+			
+			CALCULATE (
+			    [Total Expected Value],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		lineageTag: 0e7b8953-4ba2-4f8e-b7d8-1664e2daee40
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Exposure at Risk – Baseline' = [Total Exposure at Risk]
+		lineageTag: 46a71309-8cca-4ad3-8f1e-70ea19486b86
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Exposure at Risk – Optimized' =
+			
+			CALCULATE (
+			    [Total Exposure at Risk],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		lineageTag: 02717950-a4fd-4015-9f94-e2378fb697ed
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average PD – Optimized' =
+			
+			CALCULATE (
+			    [Average PD],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		lineageTag: f735740b-1567-4f68-ab26-9efbee027586
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average PD – Baseline' = [Average PD]
+		lineageTag: fc52441c-211e-4214-bc27-e8c5d81040d5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average LGD – Baseline' = [Average LGD]
+		lineageTag: 5aab0534-0291-49c5-bb8b-20dae9a4f50d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Average LGD – Optimized' =
+			
+			CALCULATE (
+			    [Average LGD],
+			    'credit_scoring_gurobi_opt'[optim_choice] = TRUE()
+			)
+		lineageTag: e7a7b767-5979-48bb-8ec1-1fcb7ea228f2
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delta Expected Profit' =
+			
+			[Expected Profit – Optimized] - [Expected Profit – Baseline]
+		lineageTag: 20216387-0733-4e1a-b23a-52d7353f4e7e
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delta Expected Loss' =
+			
+			[Expected Loss – Optimized] - [Expected Loss – Baseline]
+		lineageTag: cab6a367-2117-48e4-976d-3a5160c387c5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delta Expected Value' = ```
+			
+			[Expected Value – Optimized] - [Expected Value – Baseline]
+			
+			```
+		lineageTag: 86036208-aca5-41cd-b47d-86cb0966dfbb
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Delta Exposure at Risk' =
+			
+			[Exposure at Risk – Optimized] - [Exposure at Risk – Baseline]
+		lineageTag: d18f4fdb-5b98-42c7-868a-1c3d3cc0d58d
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Value per Risk Unit – Baseline' =
+			
+			DIVIDE (
+			    [Expected Value – Baseline],
+			    [Expected Loss – Baseline]
+			)
+		formatString: 0.00
+		lineageTag: 083759fe-ebf1-48c4-a05e-975b5a31ec23
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Value per Risk Unit – Optimized' =
+			
+			DIVIDE (
+			    [Expected Value – Optimized],
+			    [Expected Loss – Optimized]
+			)
+		formatString: 0.00
+		lineageTag: cc0115c4-26af-4bd6-9302-459cd52e30dd
+
+		changedProperty = Name
+
+		changedProperty = FormatString
+
+	measure 'Delta Value per Risk Unit' =
+			
+			[Value per Risk Unit – Optimized] - [Value per Risk Unit – Baseline]
+		lineageTag: 2e22ea9f-e1c6-4233-8664-9c37b9241689
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Card Title – Total Credits' = ```
+			
+			"Optimized: " &
+			FORMAT ( [Total Credits – Optimized], "#,0" ) &
+			"  |  Baseline: " &
+			FORMAT ( [Total Credits – Baseline], "#,0" )
+			
+			```
+		lineageTag: 105e462f-e7da-4e5f-9971-aa8349581f1f
+
+		changedProperty = Name
+
+	measure 'Card Subtitle – Total Credits' =
+			
+			"Versus Baseline: " &
+			FORMAT ( [Total Credits – Baseline], "#,0" )
+		lineageTag: 91e22ccb-d29b-4bb5-aa9b-eb5f1a38c2c8
+
+		changedProperty = Name
+
+	measure 'Card Title – Total Amount' =
+			
+			"Optimized: " &
+			FORMAT ( [Total Amount – Optimized]/ 1000000, "#,0.00,,M" ) &
+			"  |  Baseline: " &
+			FORMAT ( [Total Amount – Baseline]/ 1000000, "#,0.00,,M" )
+		lineageTag: c31019d7-1700-473a-98cc-4b6f1216f64a
+
+		changedProperty = Name
+
+	measure 'Card Title – Expected Loss' =
+			
+			"Optimized: " &
+			FORMAT ( [Expected Loss – Optimized] / 1000000, "0" ) & "K" &
+			"  |  Baseline: " &
+			FORMAT ( [Expected Loss – Baseline] / 1000000, "0" ) & "K"
+		lineageTag: 0eb45edb-4850-491a-8305-3be642997683
+
+		changedProperty = Name
+
+	measure 'Card Title – Expected Value' =
+			
+			"Optimized: " &
+			FORMAT ( [Expected Value – Optimized], "#,0" ) &
+			"  |  Baseline: " &
+			FORMAT ( [Expected Value – Baseline], "#,0" )
+		lineageTag: c9bdfd0d-5196-46ba-832d-cf3cf4670264
+
+		changedProperty = Name
+
+	measure 'Card Title – Risk Efficiency' =
+			
+			"Optimized: " &
+			FORMAT ( [Value per Risk Unit – Optimized], "0.00" ) &
+			"  |  Baseline: " &
+			FORMAT ( [Value per Risk Unit – Baseline], "0.00" )
+		lineageTag: aa019f9e-73b9-4e6f-92d2-105673bfb880
+
+		changedProperty = Name
+
+	measure 'Expected Loss – Optimized (K)' =
+			
+			DIVIDE ( [Expected Loss – Optimized], 1000 )
+		lineageTag: 785a7c36-eb7e-4d22-8c5f-a1b63fb3623c
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expected Loss – Baseline (K)' =
+			
+			DIVIDE ( [Expected Loss – Baseline], 1000 )
+		lineageTag: e53a6ed4-3c0e-4e45-9874-f4432b11c7d5
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
 	column id
 		dataType: int64
 		formatString: 0
@@ -68,11 +454,13 @@ table credit_scoring_gurobi_opt
 
 	column amount
 		dataType: int64
-		formatString: 0
+		formatString: 0.00
 		lineageTag: 057620ef-066a-44b1-828f-8b516f1ce108
 		sourceLineageTag: amount
 		summarizeBy: sum
 		sourceColumn: amount
+
+		changedProperty = FormatString
 
 		annotation SummarizationSetBy = Automatic
 
@@ -194,12 +582,16 @@ table credit_scoring_gurobi_opt
 		annotation SummarizationSetBy = Automatic
 
 	column credit_risk
-		dataType: int64
-		formatString: 0
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: cadfeb22-d240-4754-aa9d-dd4891c2becc
 		sourceLineageTag: credit_risk
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: credit_risk
+
+		changedProperty = SummarizeBy
+
+		changedProperty = DataType
 
 		annotation SummarizationSetBy = Automatic
 
@@ -302,12 +694,14 @@ table credit_scoring_gurobi_opt
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column optim_choice
-		dataType: int64
-		formatString: 0
+		dataType: boolean
+		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: ee94b691-3058-4a8d-8069-f86c4bc728aa
 		sourceLineageTag: optim_choice
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: optim_choice
+
+		changedProperty = DataType
 
 		annotation SummarizationSetBy = Automatic
 

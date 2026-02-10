@@ -1,6 +1,18 @@
 {
-  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"},\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.70\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY26SU02\",\"type\":2,\"version\":{\"visual\":\"2.6.0\",\"report\":\"3.1.0\",\"page\":\"2.3.0\"}}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"linguisticSchemaSyncVersion\":0,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"useEnhancedTooltips\":true,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}],\"outspacePane\":[{\"properties\":{\"expanded\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}",
   "layoutOptimization": 0,
+  "pods": [
+    {
+      "boundSection": "9f0352accdb661090bed",
+      "config": "{}",
+      "name": "7bc1b20fe095e49f2851"
+    }
+  ],
+  "publicCustomVisuals": [
+    "advanceCardE03760C5AB684758B56AA29F9E6C257B",
+    "multiInfoCards9D184BB3D4E44A139DA08142D76EFD36",
+    "PBI_CV_7B952816_A48F_49B4_9E13_15E3BB2C0337"
+  ],
   "resourcePackages": [
     {
       "resourcePackage": {
@@ -19,13 +31,68 @@
   ],
   "sections": [
     {
-      "config": "{}",
-      "displayName": "Page 1",
+      "config": "{\"objects\":{\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":0,\"Percent\":-0.2}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}",
+      "displayName": "Impact of Optimization on credit risk",
       "displayOption": 2,
       "filters": "[]",
       "height": 2000.00,
-      "name": "18bc17ea81c7717c3bbe",
-      "visualContainers": [],
+      "name": "9f0352accdb661090bed",
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"0ca3eac1cdf19b01ce78\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":91.72558975673064,\"z\":1000,\"width\":92.94859762015372,\"height\":743.5887809612298,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"20L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 743.59,
+          "width": 92.95,
+          "x": 0.00,
+          "y": 91.73,
+          "z": 1000.00
+        },
+        {
+          "config": "{\"name\":\"34a464e6b19a095faf4c\",\"layouts\":[{\"id\":0,\"position\":{\"x\":94.3699709843409,\"y\":95.59555502309857,\"z\":3000,\"width\":294.14016930184175,\"height\":111.52814752694833,\"tabOrder\":3000}}],\"singleVisual\":{\"visualType\":\"advanceCardE03760C5AB684758B56AA29F9E6C257B\",\"projections\":{\"mainMeasure\":[{\"queryRef\":\"credit_scoring_gurobi_opt.Total Credits – Optimized\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring_gurobi_opt\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total Credits – Optimized\"},\"Name\":\"credit_scoring_gurobi_opt.Total Credits – Optimized\",\"NativeReferenceName\":\"Credits Selected After Optimization\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total Credits – Optimized\"}}}]},\"columnProperties\":{\"credit_scoring_gurobi_opt.Total Credits – Optimized\":{\"displayName\":\"Credits Selected After Optimization\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"dataLabelSettings\":[{\"properties\":{\"decimalPlaces\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}],\"categoryLabelSettings\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"isBold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"credit_scoring_gurobi_opt\"}},\"Property\":\"Card Title – Total Credits\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}],\"divider\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#ffffff'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 111.53,
+          "width": 294.14,
+          "x": 94.37,
+          "y": 95.60,
+          "z": 3000.00
+        },
+        {
+          "config": "{\"name\":\"61cb7e89016b1db3f15f\",\"layouts\":[{\"id\":0,\"position\":{\"x\":399.9235713393456,\"y\":95.39461334699986,\"z\":4000,\"width\":292.29887935811496,\"height\":111.29371557149985,\"tabOrder\":4000}}],\"singleVisual\":{\"visualType\":\"advanceCardE03760C5AB684758B56AA29F9E6C257B\",\"projections\":{\"mainMeasure\":[{\"queryRef\":\"credit_scoring_gurobi_opt.Total Amount – Optimized\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring_gurobi_opt\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total Amount – Optimized\"},\"Name\":\"credit_scoring_gurobi_opt.Total Amount – Optimized\",\"NativeReferenceName\":\"Total Amount After Optimization\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Total Amount – Optimized\"}}}]},\"columnProperties\":{\"credit_scoring_gurobi_opt.Total Amount – Optimized\":{\"displayName\":\"Total Amount After Optimization\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"dataLabelSettings\":[{\"properties\":{\"decimalPlaces\":{\"expr\":{\"Literal\":{\"Value\":\"2D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}],\"categoryLabelSettings\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"isBold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"credit_scoring_gurobi_opt\"}},\"Property\":\"Card Title – Total Amount\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}],\"divider\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#ffffff'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 111.29,
+          "width": 292.30,
+          "x": 399.92,
+          "y": 95.39,
+          "z": 4000.00
+        },
+        {
+          "config": "{\"name\":\"7afbdc57e630a391f5e6\",\"layouts\":[{\"id\":0,\"position\":{\"x\":10.198041915019976,\"y\":10.198041915019976,\"z\":2000,\"width\":1235.4199348481343,\"height\":71.38629340513982,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"textbox\",\"drillFilterOtherVisuals\":true,\"objects\":{\"general\":[{\"properties\":{\"paragraphs\":[{\"textRuns\":[{\"value\":\"Credit Risk Management KPI DashbordManagement - Gurobi risk Optimisation\",\"textStyle\":{\"fontWeight\":\"bold\",\"fontSize\":\"16pt\",\"color\":\"#ffffff\"}}]}]}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"background\":[{\"properties\":{\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"100D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 71.39,
+          "width": 1235.42,
+          "x": 10.20,
+          "y": 10.20,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"a58826a2f2d29b39355a\",\"layouts\":[{\"id\":0,\"position\":{\"x\":0,\"y\":0,\"z\":0,\"width\":1261.6434712010428,\"height\":91.78237723517978,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"shape\",\"drillFilterOtherVisuals\":true,\"objects\":{\"shape\":[{\"properties\":{\"tileShape\":{\"expr\":{\"Literal\":{\"Value\":\"'rectangle'\"}}},\"roundEdge\":{\"expr\":{\"Literal\":{\"Value\":\"20L\"}}}}}],\"rotation\":[{\"properties\":{\"shapeAngle\":{\"expr\":{\"Literal\":{\"Value\":\"0L\"}}}}}]}},\"howCreated\":\"InsertVisualButton\"}",
+          "filters": "[]",
+          "height": 91.78,
+          "width": 1261.64,
+          "x": 0.00,
+          "y": 0.00,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"c3c4d347a48852c28259\",\"layouts\":[{\"id\":0,\"position\":{\"x\":702.0065136048452,\"y\":95.39461334699986,\"z\":5000,\"width\":281.2918085873073,\"height\":111.29371557149985,\"tabOrder\":5000}}],\"singleVisual\":{\"visualType\":\"advanceCardE03760C5AB684758B56AA29F9E6C257B\",\"projections\":{\"mainMeasure\":[{\"queryRef\":\"credit_scoring_gurobi_opt.Expected Loss – Optimized\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"credit_scoring_gurobi_opt\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Expected Loss – Optimized\"},\"Name\":\"credit_scoring_gurobi_opt.Expected Loss – Optimized\",\"NativeReferenceName\":\"Expected Loss After Optimization\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Expected Loss – Optimized\"}}}]},\"columnProperties\":{\"credit_scoring_gurobi_opt.Expected Loss – Optimized\":{\"displayName\":\"Expected Loss After Optimization\"}},\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true,\"objects\":{\"dataLabelSettings\":[{\"properties\":{\"decimalPlaces\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}],\"categoryLabelSettings\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"isBold\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"color\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}]},\"vcObjects\":{\"title\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"text\":{\"expr\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"credit_scoring_gurobi_opt\"}},\"Property\":\"Card Title – Expected Loss\"}}},\"fontColor\":{\"solid\":{\"color\":{\"expr\":{\"ThemeDataColor\":{\"ColorId\":2,\"Percent\":-0.5}}}}}}}],\"divider\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}],\"visualHeader\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}}}}],\"background\":[{\"properties\":{\"color\":{\"solid\":{\"color\":{\"expr\":{\"Literal\":{\"Value\":\"'#ffffff'\"}}}}},\"transparency\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}],\"border\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"true\"}}},\"radius\":{\"expr\":{\"Literal\":{\"Value\":\"20D\"}}}}}],\"dropShadow\":[{\"properties\":{\"show\":{\"expr\":{\"Literal\":{\"Value\":\"false\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 111.29,
+          "width": 281.29,
+          "x": 702.01,
+          "y": 95.39,
+          "z": 5000.00
+        }
+      ],
       "width": 1280.00
     }
   ]
