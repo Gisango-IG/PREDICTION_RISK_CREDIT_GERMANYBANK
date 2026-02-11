@@ -343,9 +343,9 @@ table credit_scoring_gurobi_opt
 	measure 'Card Title – Expected Loss' =
 			
 			"Optimized: " &
-			FORMAT ( [Expected Loss – Optimized] / 1000000, "0" ) & "K" &
+			FORMAT ( [Expected Loss – Optimized] / 100000, "#,0.00,,K" ) &
 			"  |  Baseline: " &
-			FORMAT ( [Expected Loss – Baseline] / 1000000, "0" ) & "K"
+			FORMAT ( [Expected Loss – Baseline] / 100000, "#,0.00,,K")
 		lineageTag: 0eb45edb-4850-491a-8305-3be642997683
 
 		changedProperty = Name
@@ -387,6 +387,63 @@ table credit_scoring_gurobi_opt
 		changedProperty = Name
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Card Title – Exposure at Risk' =
+			
+			"Optimized: " &
+			FORMAT ( [Exposure at Risk – Optimized] / 1000, "0" ) & "K" &
+			"  |  Baseline: " &
+			FORMAT ( [Exposure at Risk – Baseline] / 1000000, "0.00" ) & "M"
+		lineageTag: 3a4e9166-915c-4a3b-b221-f25f6726b82e
+
+		changedProperty = Name
+
+	measure 'Expected Loss – Removed Credits' =
+			
+			CALCULATE (
+			    SUM ( credit_scoring_gurobi_opt[expected_loss] ),
+			    credit_scoring_gurobi_opt[optim_choice] = FALSE
+			)
+		lineageTag: d06731bc-be44-4077-a635-714b23089502
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Expected Loss – Kept Credits' = ```
+			
+			CALCULATE (
+			    SUM ( credit_scoring_gurobi_opt[expected_loss] ),
+			    credit_scoring_gurobi_opt[optim_choice] = TRUE
+			)
+			
+			```
+		lineageTag: 5021c2c6-a23d-4a2d-a7f8-863c2fbd1321
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Waterfall – Expected Loss' = ```
+			
+			VAR Baseline = [Expected Loss – Baseline]
+			VAR Removed  = [Expected Loss – Removed Credits]
+			VAR Optim    = [Expected Loss – Optimized]
+			VAR Kept     = [Expected Loss – Kept Credits]
+			
+			RETURN
+			SWITCH(
+			    SELECTEDVALUE('Waterfall Steps'[Step]),
+			    "Baseline", Baseline,
+			    "Removed Credits", -Removed,
+			    "Exposure Reduction", -(Kept - Optim),
+			    "Optimized", Optim
+			)
+			
+			```
+		lineageTag: 86ffb61d-5950-4fd5-a888-fcf889c4d827
+
+		changedProperty = Name
 
 	column id
 		dataType: int64

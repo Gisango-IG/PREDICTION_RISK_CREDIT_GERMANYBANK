@@ -1,0 +1,39 @@
+table 'Waterfall Steps'
+	lineageTag: dd600b80-40b7-4c17-bced-ff5ae7675bbf
+
+	column Step
+		lineageTag: c07c24c3-90f5-4ee6-9f36-2956fe64e12b
+		summarizeBy: none
+		isNameInferred
+		sourceColumn: [Step]
+
+		annotation SummarizationSetBy = Automatic
+
+	column Order
+		formatString: 0
+		lineageTag: 31cfa1e8-8836-4ce3-9520-74af44aa84b8
+		summarizeBy: sum
+		isNameInferred
+		sourceColumn: [Order]
+
+		annotation SummarizationSetBy = Automatic
+
+	partition 'Waterfall Steps' = calculated
+		mode: import
+		source = ```
+				
+				DATATABLE(
+				    "Step", STRING,
+				    "Order", INTEGER,
+				    {
+				        { "Baseline", 1 },
+				        { "Removed Credits", 2 },
+				        { "Exposure Reduction", 3 },
+				        { "Optimized", 4 }
+				    }
+				)
+				
+				```
+
+	annotation PBI_Id = dda79b471f0a4f5f9d4d7e1377e7944b
+

@@ -13,4 +13,5 @@ annotation __PBI_TimeIntelligenceEnabled = 1
 annotation PBI_ProTooling = ["DirectLakeOnOneLakeInWeb","WebModelingEdit"]
 
 ref table credit_scoring_gurobi_opt
+ref table 'Waterfall Steps'
 

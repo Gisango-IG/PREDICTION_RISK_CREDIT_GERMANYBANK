@@ -126,7 +126,7 @@ df_silver = df_silver.withColumn(
 # Exposition au risque
 df_silver = df_silver.withColumn(
     "exposure_at_risk",
-    col("credit_amount") * col("PD")
+    col("credit_amount") * col("PD")    
 )
 
 
