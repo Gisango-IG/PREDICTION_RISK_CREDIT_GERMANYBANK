@@ -445,6 +445,19 @@ table credit_scoring_gurobi_opt
 
 		changedProperty = Name
 
+	measure 'Portfolio Type' = ```
+			
+			IF (
+			    credit_scoring_gurobi_opt[optim_choice] = 1,
+			    "Optimized",
+			    "Baseline"
+			)
+			
+			```
+		lineageTag: 3bd0e6d9-4498-40ce-95f8-fbcc97ce7076
+
+		changedProperty = Name
+
 	column id
 		dataType: int64
 		formatString: 0
@@ -751,16 +764,17 @@ table credit_scoring_gurobi_opt
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column optim_choice
-		dataType: boolean
-		formatString: """TRUE"";""TRUE"";""FALSE"""
+		dataType: int64
+		isNullable: false
+		formatString: 0
 		lineageTag: ee94b691-3058-4a8d-8069-f86c4bc728aa
 		sourceLineageTag: optim_choice
 		summarizeBy: none
 		sourceColumn: optim_choice
 
-		changedProperty = DataType
+		changedProperty = SummarizeBy
 
-		annotation SummarizationSetBy = Automatic
+		annotation SummarizationSetBy = User
 
 	partition credit_scoring_gurobi_opt = entity
 		mode: directLake
