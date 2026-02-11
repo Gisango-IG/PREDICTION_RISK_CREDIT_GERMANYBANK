@@ -25,6 +25,19 @@
 
 # CELL ********************
 
+# installation du gurobi au debut pour que quand je vais lancer le reste qu'il n y ait pas de casse 
+# car le PySpark kernel sera redemmaré à l'issue de l'installation du moteur Gurobi
+%pip install gurobipy
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
 # Loading dataset scoring_credit from Lakehouse Gold used to build report in powerbi
 #German Credit Dataset.
 
@@ -221,18 +234,6 @@ pdf_opt = df_opt.toPandas()
 # CELL ********************
 
 pdf_opt.shape
-
-# METADATA ********************
-
-# META {
-# META   "language": "python",
-# META   "language_group": "synapse_pyspark"
-# META }
-
-# CELL ********************
-
-# installation du gurobi
-%pip install gurobipy
 
 # METADATA ********************
 
@@ -663,6 +664,8 @@ display(df_silver.limit(3))
 
 # construction of finale dataframe for reporting purpose
 
+from pyspark.sql import functions as F
+
 df_final_opt = (
     df_silver
     .join(
@@ -670,8 +673,26 @@ df_final_opt = (
         on="id",
         how="left"
     )
+    .withColumn(
+        "portfolio_type",
+        F.when(F.col("optim_choice") == 1, "Optimized").otherwise("Baseline")
+    )
 )
 
+
+# METADATA ********************
+
+# META {
+# META   "language": "python",
+# META   "language_group": "synapse_pyspark"
+# META }
+
+# CELL ********************
+
+df_final_opt = df_final_opt.withColumn(
+    "credit_risk_niveau",
+    F.when(F.col("credit_risk") == 1, "Risque élevé").otherwise("Risque faible")
+)
 
 # METADATA ********************
 
@@ -688,7 +709,12 @@ df_final_opt = (
 gold_credit_scoring_path="abfss://76eb933a-950e-4895-8f00-76ccb4a5f37d@onelake.dfs.fabric.microsoft.com/3ee4579c-22ab-494d-8b27-fbf8a3b342fb/Tables/dbo/credit_scoring_gurobi_opt"
 
 # Saving the Delta table into lakehouse
-df_final_opt.write.format("delta").mode("overwrite").save(gold_credit_scoring_path)
+df_final_opt.write \
+    .format("delta") \
+    .mode("overwrite") \
+    .option("mergeSchema", "true") \
+    .save(gold_credit_scoring_path)
+
 
 # METADATA ********************
 

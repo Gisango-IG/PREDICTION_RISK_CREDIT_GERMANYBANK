@@ -458,6 +458,45 @@ table credit_scoring_gurobi_opt
 
 		changedProperty = Name
 
+	measure 'Test Optim' =
+			
+			MAX( credit_scoring_gurobi_opt[optim_choice] )
+		formatString: 0
+		lineageTag: ff2b59f1-c665-4e56-add0-cb6e634d56f2
+
+		changedProperty = Name
+
+	measure 'Avg EV – Baseline' =
+			
+			AVERAGE ( credit_scoring_gurobi_opt[expected_value] )
+		lineageTag: bac8ccd5-54ea-4461-a243-ec74a87fcaa4
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Avg EV – Optimized' =
+			
+			CALCULATE (
+			    AVERAGE ( credit_scoring_gurobi_opt[expected_value] ),
+			    credit_scoring_gurobi_opt[portfolio_type] = "Optimized"
+			)
+		lineageTag: a029c70f-291f-47c4-8824-1a153799518f
+
+		changedProperty = Name
+
+		annotation PBI_FormatHint = {"isGeneralNumber":true}
+
+	measure 'Card Title – Avg Expected Value' =
+			
+			"Optimized: " &
+			FORMAT ( [Avg EV – Optimized], "0.00" ) &
+			"  |  Baseline: " &
+			FORMAT ( [Avg EV – Baseline], "0.00" )
+		lineageTag: c9405515-7d2c-4899-8627-8569523895cc
+
+		changedProperty = Name
+
 	column id
 		dataType: int64
 		formatString: 0
@@ -764,9 +803,9 @@ table credit_scoring_gurobi_opt
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
 	column optim_choice
-		dataType: int64
+		dataType: boolean
 		isNullable: false
-		formatString: 0
+		formatString: """TRUE"";""TRUE"";""FALSE"""
 		lineageTag: ee94b691-3058-4a8d-8069-f86c4bc728aa
 		sourceLineageTag: optim_choice
 		summarizeBy: none
@@ -774,7 +813,27 @@ table credit_scoring_gurobi_opt
 
 		changedProperty = SummarizeBy
 
-		annotation SummarizationSetBy = User
+		changedProperty = DataType
+
+		annotation SummarizationSetBy = Automatic
+
+	column portfolio_type
+		dataType: string
+		lineageTag: 32239c4a-332a-49f1-a4b0-a221ebf05933
+		sourceLineageTag: portfolio_type
+		summarizeBy: none
+		sourceColumn: portfolio_type
+
+		annotation SummarizationSetBy = Automatic
+
+	column credit_risk_niveau
+		dataType: string
+		lineageTag: 77aac77a-5004-4c0d-a833-482e4a23a83a
+		sourceLineageTag: credit_risk_niveau
+		summarizeBy: none
+		sourceColumn: credit_risk_niveau
+
+		annotation SummarizationSetBy = Automatic
 
 	partition credit_scoring_gurobi_opt = entity
 		mode: directLake
