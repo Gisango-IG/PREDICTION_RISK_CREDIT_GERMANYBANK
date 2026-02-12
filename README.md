@@ -166,3 +166,173 @@ It highlights the strategic value of combining **ML predictions** with **mathema
 Fabric’s integration of **Spark**, **SQL**, **OneLake**, and **Power BI** — combined with **Gurobi’s optimization power** — creates a modern, scalable, and production‑ready architecture for **credit risk management** and many other domains such as **logistics**, **supply chain**, and **operations research**.
 
 
+
+
+# Optimisation du Risque Crédit avec Microsoft Fabric & Gurobi  
+*Une chaîne décisionnelle complète construite entièrement dans Microsoft Fabric.*
+
+## Présentation
+
+Ce projet démontre comment **Microsoft Fabric** peut être utilisé comme une plateforme unifiée pour **l’ingestion de données, l’ingénierie de données, le machine learning, l’optimisation mathématique et la business intelligence**.  
+Bien que le cas d’usage porte sur la **gestion du risque crédit**, l’architecture et les techniques présentées ici s’appliquent à de nombreux autres domaines métiers, tels que :
+
+- **Logistique** (optimisation de tournées, allocation de flotte, planification des livraisons)  
+- **Gestion des stocks** (optimisation des niveaux de stock, prévision de la demande)  
+- **Supply chain** (planification capacitaire, optimisation des achats)  
+- **Marketing analytique** (segmentation, prédiction du churn)  
+- **Gestion des risques opérationnels**  
+- **Détection de fraude**  
+
+L’objectif est de montrer comment Fabric permet de construire des **solutions analytiques et décisionnelles réelles**, en combinant ingestion, stockage, transformation, machine learning et optimisation dans un environnement unique.
+
+Le projet utilise le jeu de données public **German Credit**  
+<https://raw.githubusercontent.com/selva86/datasets/master/GermanCredit.csv>,  
+un dataset de référence contenant 1 000 crédits consommateurs avec des variables telles que le but du crédit, l’âge, le montant, la durée et le comportement de remboursement.  
+Il est largement utilisé dans la recherche en scoring et dans les expérimentations ML.
+
+## Ce que fournit ce projet
+
+Le dépôt inclut :
+
+- **Une architecture médaille complète** (Bronze → Silver → Gold) dans Fabric  
+- **Des notebooks PySpark et SQL** pour le nettoyage, la préparation et le ML  
+- **Un modèle d’optimisation Gurobi** intégré directement dans Fabric  
+- **Un rapport Power BI** comparant le portefeuille Baseline vs Optimisé  
+- **Des scripts réutilisables** pour le ML, l’optimisation et le reporting  
+- **Un environnement Fabric entièrement reproductible** pour l’analyse de bout en bout
+
+## Pourquoi Microsoft Fabric ?
+
+Fabric est utilisé comme socle du projet car il offre :
+
+### Ingestion unifiée des données
+- Ingestion directe depuis des sources en ligne ou des API  
+- Détection automatique des schémas  
+- Accès unifié sans copie entre Spark, SQL et Power BI  
+
+### Architecture Médaille
+
+Le projet implémente une architecture médaille propre et industrialisable :
+
+| Couche | Description |
+|--------|-------------|
+| **Bronze** | Données brutes issues de la source German Credit |
+| **Silver** | Données nettoyées, enrichies et prêtes pour le ML et l’optimisation |
+| **Gold** | Tables analytiques prêtes pour Power BI |
+
+### Traitement multi‑moteurs
+
+Fabric intègre de manière fluide :
+
+- **PySpark** pour l’ingénierie et l’optimisation  
+- **SQL** pour l’analyse  
+- **Power BI** pour la visualisation  
+- **OneLake** pour le stockage unifié  
+
+### Déploiement & gouvernance intégrés
+
+Tous les artefacts — pipelines, notebooks, modèles ML, modèles sémantiques, rapports — sont gérés et déployés dans Fabric.
+
+## Pipeline Machine Learning
+
+Le workflow ML estime la **Probabilité de Défaut (PD)** et la **Perte en cas de Défaut (LGD)**.
+
+### Étapes clés
+
+#### 1. Analyse des données
+
+Le dataset présentait un fort déséquilibre :
+- **70 % de crédits à risque**
+- **30 % de crédits sains**
+
+#### 2. Prétraitements statistiques & ML
+
+Pour corriger ce déséquilibre, nous avons appliqué des techniques recommandées :
+- **Sur‑échantillonnage** de la classe minoritaire  
+- Normalisation  
+- Encodage des variables catégorielles  
+- Séparation train/test  
+
+#### 3. Entraînement des modèles
+
+Plusieurs modèles ML ont été testés (régression logistique, arbres, etc.) pour estimer PD et LGD.
+
+#### 4. Intégration dans la couche Silver
+
+Les prédictions ML alimentent ensuite le modèle d’optimisation.
+
+## Optimisation Gurobi dans Fabric
+
+L’un des points forts du projet est l’intégration du **solveur Gurobi** directement dans un **notebook PySpark Fabric**.
+
+Cela montre que Fabric n’est pas seulement une plateforme BI ou data engineering, mais aussi un **environnement d’optimisation décisionnelle**.
+
+### Objectif de l’optimisation
+
+Sélectionner le meilleur sous‑ensemble de crédits qui :
+
+- maximise la **valeur attendue (EV)**  
+- minimise la **perte attendue (EL)**  
+- réduit l’exposition au risque  
+- respecte les contraintes métier  
+
+### Résultats Baseline vs Optimisé
+
+| Indicateur | Baseline | Optimisé |
+|------------|----------|----------|
+| Nombre de crédits | 1 000 | 449 |
+| Perte attendue totale | 5.16K | 1.23K |
+| Exposition au risque | 1.42M | 425K |
+| Efficacité du risque | 0.25 | 0.90 |
+
+L’optimisation améliore fortement la qualité du portefeuille.
+
+## Reporting Power BI
+
+Les tables Gold alimentent un rapport Power BI construit dans Fabric.
+
+### Visuels clés
+
+- **KPIs** : Expected Loss, Exposure at Risk, Expected Value, Risk Efficiency  
+- **Distribution du risque** : Baseline vs Optimisé  
+- **Réduction de la perte attendue** : graphique en cascade  
+- **Heatmaps (PBIVizEdit Heatmap Chart Pro)**  
+  - Expected Loss par Purpose & Age Group  
+  - Optimized Expected Loss par Purpose & Age Group  
+
+Ces heatmaps révèlent :
+
+- les segments les plus risqués  
+- comment l’optimisation redistribue le risque  
+- l’interaction entre âge et finalité du crédit  
+
+## Structure du projet
+
+```text
+├── notebooks/
+│   ├── bronze_ingestion/
+│   ├── silver_processing/
+│   ├── optimization/
+│   └── gold_reporting/
+├── pipelines/
+├── powerbi/
+├── docs/
+└── README.md
+```
+
+## Conclusion
+
+Ce projet montre comment **Microsoft Fabric** peut servir de plateforme complète pour :
+
+- l’ingestion de données  
+- l’ingénierie de données  
+- le machine learning  
+- l’optimisation avec Gurobi  
+- la business intelligence  
+
+Le tout dans un environnement unifié.
+
+Il met en évidence la valeur stratégique de combiner **prédictions ML** et **optimisation mathématique** pour construire des portefeuilles de crédit plus sûrs, plus performants et plus rentables.
+
+L’intégration de **Spark**, **SQL**, **OneLake** et **Power BI**, associée à la puissance de **Gurobi**, constitue une architecture moderne, scalable et prête pour la production — applicable non seulement au risque crédit, mais aussi à la **logistique**, à la **supply chain**, et à l’**optimisation opérationnelle**.
+
