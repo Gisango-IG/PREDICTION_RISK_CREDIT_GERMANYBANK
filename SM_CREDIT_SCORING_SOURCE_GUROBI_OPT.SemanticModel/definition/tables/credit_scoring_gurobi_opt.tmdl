@@ -490,10 +490,24 @@ table credit_scoring_gurobi_opt
 	measure 'Card Title – Avg Expected Value' =
 			
 			"Optimized: " &
-			FORMAT ( [Avg EV – Optimized], "0.00" ) &
+			FORMAT ( [Avg EV – Optimized], "0" ) &
 			"  |  Baseline: " &
-			FORMAT ( [Avg EV – Baseline], "0.00" )
+			FORMAT ( [Avg EV – Baseline], "0" )
 		lineageTag: c9405515-7d2c-4899-8627-8569523895cc
+
+		changedProperty = Name
+
+	measure PD_Category =
+			
+			SWITCH(
+			    TRUE(),
+			    credit_scoring_gurobi_opt[PD] < 0.02, "Très faible",
+			    credit_scoring_gurobi_opt[PD] < 0.05, "Faible",
+			    credit_scoring_gurobi_opt[PD] < 0.10, "Moyen",
+			    credit_scoring_gurobi_opt[PD] < 0.20, "Élevé",
+			    "Très élevé"
+			)
+		lineageTag: 75590f9c-7ee5-493a-a1ae-4dacd2a30c2d
 
 		changedProperty = Name
 
@@ -502,10 +516,12 @@ table credit_scoring_gurobi_opt
 		formatString: 0
 		lineageTag: 4be11b95-4837-4008-b436-2dba1befc0d4
 		sourceLineageTag: id
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: id
 
-		annotation SummarizationSetBy = Automatic
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
 
 	column duration_cat
 		dataType: string
@@ -708,10 +724,12 @@ table credit_scoring_gurobi_opt
 		dataType: double
 		lineageTag: 323c814f-e891-4c41-a2d5-ed8d6ac9463c
 		sourceLineageTag: PD_history
-		summarizeBy: sum
+		summarizeBy: none
 		sourceColumn: PD_history
 
-		annotation SummarizationSetBy = Automatic
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -722,7 +740,9 @@ table credit_scoring_gurobi_opt
 		summarizeBy: sum
 		sourceColumn: PD
 
-		annotation SummarizationSetBy = Automatic
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
@@ -733,7 +753,9 @@ table credit_scoring_gurobi_opt
 		summarizeBy: sum
 		sourceColumn: LGD
 
-		annotation SummarizationSetBy = Automatic
+		changedProperty = SummarizeBy
+
+		annotation SummarizationSetBy = User
 
 		annotation PBI_FormatHint = {"isGeneralNumber":true}
 
