@@ -1,0 +1,11 @@
+{
+  "$schema": "https://developer.microsoft.com/json-schemas/fabric/gitIntegration/platformProperties/2.0.0/schema.json",
+  "metadata": {
+    "type": "Report",
+    "displayName": "RAPPORT AUTOMATIC PROPOSE PAR L IA FABRIC (A EXPLORFER)"
+  },
+  "config": {
+    "version": "2.0",
+    "logicalId": "a135a44b-8f5c-aa1e-4130-a12ff9d3081b"
+  }
+}
