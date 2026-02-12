@@ -306,19 +306,108 @@ Ces heatmaps révèlent :
 - comment l’optimisation redistribue le risque  
 - l’interaction entre âge et finalité du crédit  
 
-## Structure du projet
+## Structure du Projet
+
+Ce projet Microsoft Fabric repose sur une architecture complète intégrant Lakehouses, SQL Endpoints, notebooks PySpark/SQL, modèles sémantiques, expériences ML et rapports Power BI.  
+Voici l’ensemble des objets utilisés dans l’espace Fabric du projet.
+
+###  Lakehouses (Architecture Médaille)
+
+- **LK_SOURCE_CREDIT_BRONZE**  
+  - Lakehouse (Bronze) – Données brutes issues de la source German Credit  
+  - SQL Endpoint associé
+
+- **LK_SOURCE_CREDIT_SILVER**  
+  - Lakehouse (Silver) – Données nettoyées, enrichies, features ML  
+  - SQL Endpoint associé
+
+- **LK_SOURCE_CREDIT_GOLD**  
+  - Lakehouse (Gold) – Tables prêtes pour le reporting Power BI  
+  - SQL Endpoint associé
+
+
+### Notebooks PySpark / SQL
+
+- **NB_EXTRACTION_SOURCE_BRONZE**  
+  Ingestion des données brutes dans le Lakehouse Bronze.
+
+- **NB_EXTRACTION_SOURCE_SYLVER**  
+  Nettoyage, transformation, feature engineering, équilibrage des classes (oversampling), préparation ML.
+
+- **NB_SOURCE_GOLD_ML**  
+  Préparation des données finales pour le machine learning et scoring.
+
+- **NB_SCORING_CREDIT_FOR_APPS**  
+  Notebook de scoring ML pour applications externes (PD, LGD, Expected Loss).
+
+- **NB_EXTRACTION_SOURCE_GOLD_OPTIMISATION_GUROBI**  
+  Intégration du solveur Gurobi dans Fabric via PySpark.  
+  Construction du portefeuille optimisé (EV, EL, contraintes métier).
+
+### Expériences Machine Learning
+
+- **NB_SOURCE_GOLD_ML (Expérience ML)**  
+  Expérience Fabric ML pour entraîner les modèles PD / LGD.  
+  Gestion des runs, métriques, modèles sauvegardés.
+
+
+### Modèles Sémantiques Power BI
+
+- **SM_CREDIT_SCORING**  
+  Modèle sémantique basé sur les données Silver/Gold pour le scoring et l’analyse Baseline.
+
+- **SM_CREDIT_SCORING_SOURCE_GUROBI_OPT**  
+  Modèle sémantique dédié au portefeuille optimisé par Gurobi.
+
+### Rapports Power BI
+
+- **Rapport sur défaut de Crédit**  
+  Analyse Baseline du risque crédit.
+
+- **Rapport sur défaut de Crédit – Optimisation grâce au solveur Gurobi**  
+  Comparaison Baseline vs Optimisé, KPIs, heatmaps, waterfall Expected Loss.
+
+- **RAPPORT AUTOMATIC PROPOSÉ PAR L’IA FABRIC**  
+  Rapport généré automatiquement par Fabric pour exploration.
+
+### Objets complémentaires
+
+- **Step Baseline, Waterfall – Expected Loss 516 328,24, Somme de Order 1**  
+  Visuals et mesures DAX utilisés dans les rapports.
+
+### Résumé visuel de l’architecture
 
 ```text
-├── notebooks/
-│   ├── bronze_ingestion/
-│   ├── silver_processing/
-│   ├── optimization/
-│   └── gold_reporting/
-├── pipelines/
-├── powerbi/
-├── docs/
-└── README.md
+├── Lakehouses
+│   ├── LK_SOURCE_CREDIT_BRONZE
+│   ├── LK_SOURCE_CREDIT_SILVER
+│   └── LK_SOURCE_CREDIT_GOLD
+│
+├── SQL Endpoints
+│   ├── Bronze SQL Endpoint
+│   ├── Silver SQL Endpoint
+│   └── Gold SQL Endpoint
+│
+├── Notebooks
+│   ├── NB_EXTRACTION_SOURCE_BRONZE
+│   ├── NB_EXTRACTION_SOURCE_SYLVER
+│   ├── NB_SOURCE_GOLD_ML
+│   ├── NB_SCORING_CREDIT_FOR_APPS
+│   └── NB_EXTRACTION_SOURCE_GOLD_OPTIMISATION_GUROBI
+│
+├── ML Experiments
+│   └── NB_SOURCE_GOLD_ML (Expérience ML)
+│
+├── Semantic Models
+│   ├── SM_CREDIT_SCORING
+│   └── SM_CREDIT_SCORING_SOURCE_GUROBI_OPT
+│
+└── Power BI Reports
+    ├── Rapport sur défaut de Crédit
+    ├── Rapport Optimisation Gurobi
+    └── Rapport IA Fabric
 ```
+
 
 ## Conclusion
 
@@ -334,5 +423,5 @@ Le tout dans un environnement unifié.
 
 Il met en évidence la valeur stratégique de combiner **prédictions ML** et **optimisation mathématique** pour construire des portefeuilles de crédit plus sûrs, plus performants et plus rentables.
 
-L’intégration de **Spark**, **SQL**, **OneLake** et **Power BI**, associée à la puissance de **Gurobi**, constitue une architecture moderne, scalable et prête pour la production — applicable non seulement au risque crédit, mais aussi à la **logistique**, à la **supply chain**, et à l’**optimisation opérationnelle**.
+L’intégration de **Spark**, **SQL**, **OneLake** et **Power BI**, associée à la puissance de **Gurobi**, constitue une architecture moderne, scalable et prête pour la production; applicable non seulement au risque crédit, mais aussi à la **logistique**, à la **supply chain**, et à l’**optimisation opérationnelle**.
 
