@@ -148,7 +148,21 @@ These heatmaps reveal:
 ├── powerbi/                   # Power BI report files
 ├── docs/                      # Documentation
 └── README.md                  # Project overview
+```
+## Conclusion
 
+This project demonstrates how **Microsoft Fabric** can serve as a complete platform for:
 
+- Data ingestion  
+- Data engineering  
+- Machine learning  
+- Optimization with Gurobi  
+- Business intelligence  
+
+All within a single, unified environment.
+
+It highlights the strategic value of combining **ML predictions** with **mathematical optimization** to build smarter, safer, and more profitable credit portfolios.
+
+Fabric’s integration of **Spark**, **SQL**, **OneLake**, and **Power BI** — combined with **Gurobi’s optimization power** — creates a modern, scalable, and production‑ready architecture for **credit risk management** and many other domains such as **logistics**, **supply chain**, and **operations research**.
 
 
